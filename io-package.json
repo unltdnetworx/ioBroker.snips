@@ -1,0 +1,78 @@
+{
+    "common": {
+        "name": "snips",
+        "version": "0.0.2",
+        "news": {
+			"0.0.2": {
+                "en": "First working adapter",
+                "de": "Erste funktionierende Version",
+                "ru": "Первоначальный адаптер",
+                "pt": "Versão inicial",
+                "fr": "Version initiale",
+                "nl": "Eerste release"
+            }
+			,
+            "0.0.1": {
+                "en": "initial adapter",
+                "de": "Initiale Version",
+                "ru": "Первоначальный адаптер",
+                "pt": "Versão inicial",
+                "fr": "Version initiale",
+                "nl": "Eerste release"
+            }
+        },
+		"title": "Snips-Offline Speak2Text",
+        "titleLang": {
+            "en": "Snips-Offline Speak2Text",
+            "de": "Snips-Offline Speak2Text",
+            "ru": "Адаптер шаблонов на основе Javascript / Node.js",
+            "pt": "Adaptador de modelo baseado em Javascript / Node.js",
+            "nl": "Javascript / Node.js gebaseerde sjabloonadapter",
+            "fr": "Javascript / Node.js basé adaptateur de modèle",
+            "it": "Adattatore modello basato su Javascript / Node.js",
+            "es": "Adaptador de plantilla basado en JavaScript / Node.js"
+        },
+        "desc": {
+            "en": "ioBroker snips",
+            "de": "ioBroker Snips",
+            "ru": "ioBroker Snips как образец",
+            "pt": "Modelo de adaptador para o ioBroker",
+            "fr": "ioBroker adaptateur modèle",
+            "nl": "ioBroker Snips",
+            "it": "Adattatore modello ioBroker",
+            "es": "Adaptador de plantilla ioBroker"
+        },
+        "authors": [
+            "Walter Zengel <w.zengel@gmx.de>"
+        ],
+        "docs": {
+            "en": "docs/en/admin.md",
+            "ru": "docs/ru/admin.md",
+            "de": "docs/de/admin.md",
+            "es": "docs/es/admin.md",
+            "it": "docs/it/admin.md",
+            "fr": "docs/fr/admin.md",
+            "nl": "docs/nl/admin.md",
+            "pt": "docs/pt/admin.md"
+        },
+        "platform": "Javascript/Node.js",
+        "mode": "daemon",
+        "icon": "snips.png",
+        "materialize": true,
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/Bettman66/ioBroker.snips/master/admin/snips.png",
+        "keywords": ["snips", "vis", "GUI", "graphical", "scada"],
+        "readme": "https://github.com/Bettman66/ioBroker.snips/blob/master/README.md",
+        "loglevel": "info",
+        "type": "general",
+        "license": "MIT",
+        "messagebox": false,
+        "restartAdapters": ["vis"]
+    },
+    "native": {
+
+    },
+    "objects": [
+
+    ]
+}

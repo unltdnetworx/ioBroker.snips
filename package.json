@@ -1,0 +1,41 @@
+{
+  "name": "iobroker.snips",
+  "version": "0.0.2",
+  "description": "snips",
+  "author": {
+    "name": "Walter Zengel",
+    "email": "w.zengel@gmx.de"
+  },
+  "contributors": [
+    {
+      "name": "Walter Zengel",
+      "email": "w.zengel@gmx.de"
+    }
+  ],
+  "homepage": "https://github.com/Bettman66/ioBroker.snips",
+  "license": "MIT",
+  "keywords": [
+    "ioBroker",
+    "snips",
+    "Smart Home",
+    "home automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bettman66/ioBroker.snips"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "mocha": "^4.1.0",
+    "chai": "^4.1.2"
+  },
+  "main": "main.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha --exit"
+  },
+  "bugs": {
+    "url": "https://github.com/Bettman66/ioBroker.snips/issues"
+  },
+  "readmeFilename": "README.md"
+}
