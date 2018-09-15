@@ -30,7 +30,9 @@ adapter.on('stateChange', (id, state) => {
 	switch (id) {
     case (adapter.namespace + '.send.say.text') :
 		adapter.log.info('from Text2Command : ' + state.val);	
-		if (client) client.onStateChange('hermes/tts/say',state.val,'say');
+		if (state.val.indexOf(adapter.config.filter) == -1) {
+			if (client) client.onStateChange('hermes/tts/say',state.val,'say');
+		}
 		break;
 	case (adapter.namespace + '.send.inject.room') :
 		if (client) client.onStateChange('hermes/asr/inject',state.val,'inject_room');

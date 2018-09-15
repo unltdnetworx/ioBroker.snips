@@ -81,7 +81,8 @@
     // the function loadSettings has to exist ...
     function load(settings, _onChange) {
         onChange = _onChange;
-        settings.retransmitInterval = 2000;
+		settings.filter = '*';
+		settings.topic = '0';
         settings.retransmitCount = 10;
         settings.sendAckToo = false;
         settings.webSocket  = false;
@@ -172,7 +173,11 @@
                     </div>
 					<div class="input-field col s12 m6 l4">
                         <input id="topic" type="text" class="value" />
-                        <label class="translate" for="topic">Topic:</label>
+                        <label class="translate" for="topic">Text2Command_Instanz:</label>
+                    </div>
+					<div class="input-field col s12 m6 l4">
+                        <input id="filter" type="text" class="value" />
+                        <label class="translate" for="topic">Filter:</label>
                     </div>
                 </div>     
 				<div class="row">

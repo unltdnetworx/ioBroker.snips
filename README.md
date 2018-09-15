@@ -48,7 +48,8 @@ Snips sollte erst funktionieren, bevor es hier weiter geht:
 ### Snips-Adapter konfigurieren
 Url      : Adresse des Snips-MQTT-Servers
 Port     : Port des Snips-MQTT-Servers
-Topic    : Text Topic vom Text2Command-Adapters z.B text2command.0.text
+Instanz  : Text2Command-Instanz z.B 0
+Filter   : z.B. verstehe
 ClientID : eindeutige ID z.B. 0
 
 ### Text2Command-Adapter konfigurieren
@@ -58,6 +59,9 @@ In der Config vom Text2Command-Adapters unter Antwort in ID snips.0.send.say.tex
 Unbekannte Wörter können unter snips.0.send.inject.room oder device angelernt werden
 
 ## Changelog 
+### 0.0.3
+* (wal) add filter and text2command_Instanz
+
 ### 0.0.2
 * (wal) first working adapter
 
