@@ -1,9 +1,18 @@
 {
     "common": {
         "name": "snips",
-        "version": "0.0.2",
+        "version": "0.0.3",
         "news": {
-			"0.0.2": {
+	     "0.0.3": {
+                "en": "add filter and text2command-instanz",
+                "de": "filter und text2command-instanz hinzugefügt",
+                "ru": "Первоначальный адаптер",
+                "pt": "Versão inicial",
+                "fr": "Version initiale",
+                "nl": "Eerste release"
+            }
+			,
+	    "0.0.2": {
                 "en": "First working adapter",
                 "de": "Erste funktionierende Version",
                 "ru": "Первоначальный адаптер",
