@@ -8,7 +8,7 @@ Snips Url: https://makers.snips.ai/
 
 Benötigt wird auch das Modul "Text2Command" für das Ausführen von Befehlen.
 
-**********************Installation Snips***************************
+## Installation Snips
 
 Für Snips unter Debian Stretch(x86),Raspbian/Armbian Stretch(RPI3,Odroid) bitte folgende Pakete installieren:
 
@@ -45,20 +45,19 @@ Wenn ihr fertig seid, drückt ihr auf auf Deploy Assistant um das ZIP File herun
 Das Zipfile wird auf dem Snips-Rechner unter "/usr/share/snips" entpackt, danach neu booten.
 
 Snips sollte erst funktionieren, bevor es hier weiter geht:
-
-*************************Snips-Adapter konfigurieren***************************
+### Snips-Adapter konfigurieren
 Url      : Adresse des Snips-MQTT-Servers
 Port     : Port des Snips-MQTT-Servers
 Topic    : Text Topic vom Text2Command-Adapters z.B text2command.0.text
 ClientID : eindeutige ID z.B. 0
 
-*********************Text2Command-Adapter konfigurieren************************
+### Text2Command-Adapter konfigurieren
 In der Config vom Text2Command-Adapters unter Antwort in ID snips.0.send.say.text einfügen.
 
-************************Injection(neue Wörter lernen)**************************
+### Injection(neue Wörter lernen)
 Unbekannte Wörter können unter snips.0.send.inject.room oder device angelernt werden
 
-
+## Changelog 
 ### 0.0.2
 * (wal) first working adapter
 
