@@ -1,8 +1,17 @@
 {
     "common": {
         "name": "snips",
-        "version": "0.0.3",
+        "version": "0.0.4",
         "news": {
+		"0.0.4": {
+                "en": "add hotword recognize",
+                "de": "hotworderkennung zugefügt",
+                "ru": "Первоначальный адаптер",
+                "pt": "Versão inicial",
+                "fr": "Version initiale",
+                "nl": "Eerste release"
+            }
+			,
 	     "0.0.3": {
                 "en": "add filter and text2command-instanz",
                 "de": "filter und text2command-instanz hinzugefügt",
@@ -54,15 +63,7 @@
         "authors": [
             "Walter Zengel <w.zengel@gmx.de>"
         ],
-        "docs": {
-            "en": "docs/en/admin.md",
-            "ru": "docs/ru/admin.md",
-            "de": "docs/de/admin.md",
-            "es": "docs/es/admin.md",
-            "it": "docs/it/admin.md",
-            "fr": "docs/fr/admin.md",
-            "nl": "docs/nl/admin.md",
-            "pt": "docs/pt/admin.md"
+        "docs": {       
         },
         "platform": "Javascript/Node.js",
         "mode": "daemon",
@@ -70,16 +71,18 @@
         "materialize": true,
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/Bettman66/ioBroker.snips/master/admin/snips.png",
-        "keywords": ["snips", "vis", "GUI", "graphical", "scada"],
+        "keywords": ["snips", "GUI", "graphical", "scada"],
         "readme": "https://github.com/Bettman66/ioBroker.snips/blob/master/README.md",
         "loglevel": "info",
         "type": "general",
-        "license": "MIT",
-        "messagebox": false,
-        "restartAdapters": ["vis"]
+        "license": "MIT"
     },
     "native": {
-
+		"filter": "*",
+		"topic": "0",
+		"url": "localhost",
+		"port": "1883",
+		"clientId": "0"
     },
     "objects": [
 

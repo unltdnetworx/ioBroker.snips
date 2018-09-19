@@ -1,24 +1,25 @@
 <html>
 <head>
 <!-- Materialze style -->
+<link rel="stylesheet" type="text/css" href="../../lib/css/fancytree/ui.fancytree.min.css"/>
 <link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
 <link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
 
 <script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
-
+<script type="text/javascript" src="../../lib/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../../lib/js/jquery.fancytree-all.min.js"></script>
+	
 <script type="text/javascript" src="../../js/translate.js"></script>
+<script type="text/javascript" src="../../lib/js/selectID.js"></script>
 <script type="text/javascript" src="../../lib/js/materialize.js"></script>
 <script type="text/javascript" src="../../js/adapter-settings.js"></script>
 <script type="text/javascript" src="words.js"></script>
+<script type="text/javascript" src="actions.js"></script>
 
 <script type="text/javascript">
-    var onChange;
 
-    function init() {
-        $('#_clientId').show();
-        $('#_url').show();
-    }
+    var onChange;
 
     function setValue(id, value) {
         var $value = $('#' + id + '.value');
@@ -81,17 +82,13 @@
     // the function loadSettings has to exist ...
     function load(settings, _onChange) {
         onChange = _onChange;
-		settings.filter = '*';
-		settings.topic = '0';
         settings.retransmitCount = 10;
         settings.sendAckToo = false;
         settings.webSocket  = false;
         settings.defaultQoS = 0;
         settings.sendOnStartInterval = 2000;
         settings.sendInterval = 10;
-        settings.clientId = settings.clientId || '';
         loadHelper(settings);
-        init();
         onChange(false);
         if (M) M.updateTextFields();
     }
@@ -176,7 +173,7 @@
                         <label class="translate" for="topic">Text2Command_Instanz:</label>
                     </div>
 					<div class="input-field col s12 m6 l4">
-                        <input id="filter" type="text" class="value" />
+			            <input id="filter" type="text" class="value" />
                         <label class="translate" for="topic">Filter:</label>
                     </div>
                 </div>     

@@ -12,9 +12,6 @@ const utils =    require(__dirname + '/lib/utils');
 const adapter = new utils.Adapter('snips');
 
 let client   = null;
-let states   = {};
-
-const messageboxRegex = new RegExp('\.messagebox$');
 
 adapter.on('ready', function () {
     adapter.config.maxTopicLength = 100;
@@ -56,7 +53,7 @@ function main() {
     adapter.setObjectNotExists(adapter.namespace + '.send.say.text', {
         type: 'state',
         common: {
-            name: 'text',
+            name: 'say.text',
             desc: 'send text to snips',
             type: 'string',
             role: 'text',
@@ -69,7 +66,7 @@ function main() {
     adapter.setObjectNotExists(adapter.namespace + '.send.inject.room', {
         type: 'state',
         common: {
-            name: 'room',
+            name: 'inject.room',
             desc: 'send inject to snips',
             type: 'string',
             role: 'text',
@@ -82,7 +79,7 @@ function main() {
 	adapter.setObjectNotExists(adapter.namespace + '.send.inject.device', {
         type: 'state',
         common: {
-            name: 'device',
+            name: 'inject.device',
             desc: 'send inject to snips',
             type: 'string',
             role: 'text',
@@ -92,6 +89,32 @@ function main() {
         native: {}
     });
 	
+	adapter.setObjectNotExists(adapter.namespace + '.hotword.wait', {
+        type: 'state',
+        common: {
+            name: 'hotword.wait',
+            desc: 'wait of hotword',
+            type: 'boolean',
+            role: 'state',
+            read: true,
+            write: false
+        },
+        native: {}
+    });
+	
+	adapter.setObjectNotExists(adapter.namespace + '.hotword.detected', {
+        type: 'state',
+        common: {
+            name: 'hotword.detected',
+            desc: 'hotword detected',
+            type: 'boolean',
+            role: 'state',
+            read: true,
+            write: false
+        },
+        native: {}
+    });
+	
 	adapter.subscribeStates('*');
-    client = new require(__dirname + '/lib/client')(adapter, states);    
+    client = new require(__dirname + '/lib/client')(adapter);    
 }
