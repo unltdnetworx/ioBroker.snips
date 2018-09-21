@@ -2,15 +2,22 @@
 # ioBroker.snips
 =================
 
-Snips Offline Speak2Text Adapter for ioBroker
+[![Build Status](https://travis-ci.org/bettman66/ioBroker.snips.svg?branch=master)](https://travis-ci.org/bettman66/ioBroker.snips)
+[![NPM version](http://img.shields.io/npm/v/iobroker.snips.svg)](https://www.npmjs.com/package/iobroker.snips)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.snips.svg)](https://www.npmjs.com/package/iobroker.snips)
+
+[![NPM](https://nodei.co/npm/iobroker.nips.png?downloads=true)](https://nodei.co/npm/iobroker.snips/)
+
+Requires node.js 6.0 or higher and Admin v3!
+
+The adapter communicates with Snips hardware by MQTT.The text2command adapter is required to execute
+the commands.
 
 Snips Url: https://makers.snips.ai/
 
-Benötigt wird auch das Modul "Text2Command" für das Ausführen von Befehlen.
-
 ## Installation Snips
 
-Für Snips unter Debian Stretch(x86),Raspbian/Armbian Stretch(RPI3,Odroid) bitte folgende Pakete installieren:
+For Snips under Debian Stretch (x86), Raspbian / Armbian Stretch (RPI3, Odroid) please install the following packages:
 
 lsb-release 
 apt-transport-https 
@@ -29,36 +36,40 @@ snips-nlu
 snips-tts
 snips-asr-injection
 
-Es können je nach verwendete Hardware und Linux-Distributionen schon Pakete vorhanden sein.
+Depending on your hardware and Linux distribution, you may already have packages installed.
 
-Installationsanleitung und Konfiguration für Raspian/Armbian:
+Installation instructions and configuration for Raspian / Armbian:
 https://snips.gitbook.io/documentation/installing-snips/on-a-raspberry-pi
 
-Installationsanleitung und Konfiguration für Debian:
+Installation instructions and configuration for Debian:
 sudo nano /etc/apt/sources.list
-In jeder Zeile "non-free" anhängen, sonst kann man das Paket "libttspico-utils" nicht installieren.
+Attach "non-free" in each line, otherwise you can not install the package "libttspico-utils".
 https://snips.gitbook.io/documentation/advanced-configuration/advanced-solutions
 
-Jetzt bei "https://console.snips.ai" anmelden und einen neuen Assistenten hinzufügen.
-Eine App hinzufügen, oben den Haken "only show apps with actions" entfernen und nach FHEM suchen und anwählen.
-Wenn ihr fertig seid, drückt ihr auf auf Deploy Assistant um das ZIP File herunterzuladen.
-Das Zipfile wird auf dem Snips-Rechner unter "/usr/share/snips" entpackt, danach neu booten.
+Log in to https://console.snips.ai and add a new wizard.
+Add an app, above the check mark "only show apps with actions" and search for FHEM and select.
+When you're done, press Deploy Assistant to download the ZIP file.
+The zipfile is unpacked on the snips machine under "/ usr / share / snips", then reboot.
 
-Snips sollte erst funktionieren, bevor es hier weiter geht:
-### Snips-Adapter konfigurieren
-Url      : Adresse des Snips-MQTT-Servers
-Port     : Port des Snips-MQTT-Servers
-Instanz  : Text2Command-Instanz z.B 0
-Filter   : z.B. verstehe
-ClientID : eindeutige ID z.B. 0
+Snips should work before we continue here:
 
-### Text2Command-Adapter konfigurieren
-In der Config vom Text2Command-Adapters unter Antwort in ID snips.0.send.say.text einfügen.
+### Configure Snips Adapter
+Url      : Address of the Snips-MQTT-Servers
+Port     : Port of the Snips-MQTT-Servers
+Instanz  : Text2Command-Instanz (for example 0)
+Filter   : for example understand
+ClientID : ID (for example 0)
 
-### Injection(neue Wörter lernen)
-Unbekannte Wörter können unter snips.0.send.inject.room oder device angelernt werden
+### Configure Text2Command adapter
+Insert in the config of the Text2Command adapter under Answer in ID snips.0.send.say.text.
 
-## Changelog 
+### Injection (learn new words)
+Unknown words can be learned under snips.0.send.inject.room or device.
+
+## Changelog
+### 0.0.4
+* (wal) add hotword recognize
+
 ### 0.0.3
 * (wal) add filter and text2command_Instanz
 
