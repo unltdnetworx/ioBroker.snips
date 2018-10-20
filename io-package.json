@@ -1,8 +1,16 @@
 {
     "common": {
         "name": "snips",
-        "version": "0.0.4",
+        "version": "0.0.5",
         "news": {
+                "0.0.5": {
+                "en": "bugfix injection",
+                "de": "fehlerbereinigung injection",
+                "ru": "Первоначальный адаптер",
+                "pt": "Versão inicial",
+                "fr": "Version initiale",
+                "nl": "Eerste release"
+            }
 		"0.0.4": {
                 "en": "add hotword recognize",
                 "de": "hotworderkennung zugefügt",
