@@ -11,6 +11,7 @@
                 "fr": "Version initiale",
                 "nl": "Eerste release"
             }
+		           ,
 		"0.0.4": {
                 "en": "add hotword recognize",
                 "de": "hotworderkennung zugefügt",
