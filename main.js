@@ -50,6 +50,19 @@ function main() {
         adapter.config.retransmitInterval = adapter.config.sendInterval * 5;
     }
 
+	adapter.setObjectNotExists(adapter.namespace + '.receive.text', {
+        type: 'state',
+        common: {
+            name: 'receive.text',
+            desc: 'receive text from snips',
+            type: 'string',
+            role: 'text',
+            read: true,
+            write: true
+        },
+        native: {}
+    });
+
     adapter.setObjectNotExists(adapter.namespace + '.send.say.text', {
         type: 'state',
         common: {
