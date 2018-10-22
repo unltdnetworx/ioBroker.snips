@@ -1,9 +1,18 @@
 {
     "common": {
         "name": "snips",
-        "version": "0.0.6",
+        "version": "0.0.7",
         "news": {
-			"0.0.6": {
+	    "0.0.7": {
+                "en": "file corrupt",
+                "de": "datei defekt",
+                "ru": "Первоначальный адаптер",
+                "pt": "Versão inicial",
+                "fr": "Version initiale",
+                "nl": "Eerste release"
+            }
+                        ,
+	    "0.0.6": {
                 "en": "add receive.text",
                 "de": "receive.text zugefügt",
                 "ru": "Первоначальный адаптер",
@@ -11,8 +20,8 @@
                 "fr": "Version initiale",
                 "nl": "Eerste release"
             }
-			,	
-			"0.0.5": {
+			,
+	    "0.0.5": {
                 "en": "bugfix injection",
                 "de": "fehlerbereinigung injection",
                 "ru": "Первоначальный адаптер",
@@ -20,13 +29,8 @@
                 "fr": "Version initiale",
                 "nl": "Eerste release"
             }
-<<<<<<< HEAD
-			,
-			"0.0.4": {
-=======
-		           ,
-		"0.0.4": {
->>>>>>> 2c5bdf17c46347912e0dc1f8257d4a503ea2f154
+		        ,
+	    "0.0.4": {
                 "en": "add hotword recognize",
                 "de": "hotworderkennung zugefügt",
                 "ru": "Первоначальный адаптер",
@@ -35,7 +39,7 @@
                 "nl": "Eerste release"
             }
 			,
-			"0.0.3": {
+	    "0.0.3": {
                 "en": "add filter and text2command-instanz",
                 "de": "filter und text2command-instanz hinzugefügt",
                 "ru": "Первоначальный адаптер",
@@ -44,7 +48,7 @@
                 "nl": "Eerste release"
             }
 			,
-			"0.0.2": {
+	    "0.0.2": {
                 "en": "First working adapter",
                 "de": "Erste funktionierende Version",
                 "ru": "Первоначальный адаптер",
