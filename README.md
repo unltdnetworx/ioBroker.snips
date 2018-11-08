@@ -34,7 +34,7 @@ snips-dialogue
 snips-hotword
 snips-nlu
 snips-tts
-snips-asr-injection
+snips-injection
 
 Depending on your hardware and Linux distribution, you may already have packages installed.
 
@@ -67,6 +67,9 @@ Insert in the config of the Text2Command adapter under Answer in ID snips.0.send
 Unknown words can be learned under snips.0.send.inject.room or device.
 
 ## Changelog
+### 0.0.8
+* (wal) adaptation for new snips version
+
 ### 0.0.7
 * (wal) file corrupt
 

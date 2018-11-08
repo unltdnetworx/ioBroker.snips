@@ -24,20 +24,20 @@ adapter.on('unload', function () {
 
 adapter.on('stateChange', (id, state) => {
     adapter.log.debug('stateChange ' + id + ': ' + JSON.stringify(state));
-	switch (id) {
+    switch (id) {
     case (adapter.namespace + '.send.say.text') :
-		adapter.log.info('from Text2Command : ' + state.val);	
-		if (state.val.indexOf(adapter.config.filter) == -1) {
-			if (client) client.onStateChange('hermes/tts/say',state.val,'say');
-		}
-		break;
-	case (adapter.namespace + '.send.inject.room') :
-		if (client) client.onStateChange('hermes/asr/inject',state.val,'inject_room');
-		break;
-	case (adapter.namespace + '.send.inject.device') :
-		if (client) client.onStateChange('hermes/asr/inject',state.val,'inject_device');
-		break;
+        adapter.log.info('from Text2Command : ' + state.val);
+	if (state.val.indexOf(adapter.config.filter) == -1) {
+	    if (client) client.onStateChange('hermes/tts/say',state.val,'say');
 	}
+	break;
+    case (adapter.namespace + '.send.inject.room') :
+	if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_room');
+	break;
+    case (adapter.namespace + '.send.inject.device') :
+	if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_device');
+	break;
+    }
 });
 
 function main() {
@@ -75,7 +75,7 @@ function main() {
         },
         native: {}
     });
-	
+
     adapter.setObjectNotExists(adapter.namespace + '.send.inject.room', {
         type: 'state',
         common: {
@@ -88,7 +88,7 @@ function main() {
         },
         native: {}
     });
-	
+
 	adapter.setObjectNotExists(adapter.namespace + '.send.inject.device', {
         type: 'state',
         common: {
@@ -101,7 +101,7 @@ function main() {
         },
         native: {}
     });
-	
+
 	adapter.setObjectNotExists(adapter.namespace + '.hotword.wait', {
         type: 'state',
         common: {
@@ -114,7 +114,7 @@ function main() {
         },
         native: {}
     });
-	
+
 	adapter.setObjectNotExists(adapter.namespace + '.hotword.detected', {
         type: 'state',
         common: {
@@ -127,7 +127,7 @@ function main() {
         },
         native: {}
     });
-	
+
 	adapter.subscribeStates('*');
-    client = new require(__dirname + '/lib/client')(adapter);    
+    client = new require(__dirname + '/lib/client')(adapter);
 }

@@ -1,8 +1,17 @@
 {
     "common": {
         "name": "snips",
-        "version": "0.0.7",
+        "version": "0.0.8",
         "news": {
+            "0.0.8": {
+                "en": "Adaptation for new snips version",
+                "de": "Anpassung für neue Snips-Version",
+                "ru": "Первоначальный адаптер",
+                "pt": "Versão inicial",
+                "fr": "Version initiale",
+                "nl": "Eerste release"
+            }
+                        ,
 	    "0.0.7": {
                 "en": "file corrupt",
                 "de": "datei defekt",
