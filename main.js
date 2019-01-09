@@ -32,10 +32,13 @@ adapter.on('stateChange', (id, state) => {
 	}
 	break;
     case (adapter.namespace + '.send.inject.room') :
-	if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_room');
+	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_room');
 	break;
     case (adapter.namespace + '.send.inject.device') :
-	if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_device');
+	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_device');
+	break;
+    case (adapter.namespace + '.send.inject.color') :
+	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_color');
 	break;
     }
 });
@@ -80,7 +83,7 @@ function main() {
         type: 'state',
         common: {
             name: 'inject.room',
-            desc: 'send inject to snips',
+            desc: 'send inject for room-slot to snips',
             type: 'string',
             role: 'text',
             read: true,
@@ -93,7 +96,20 @@ function main() {
         type: 'state',
         common: {
             name: 'inject.device',
-            desc: 'send inject to snips',
+            desc: 'send inject for device-slot to snips',
+            type: 'string',
+            role: 'text',
+            read: true,
+            write: true
+        },
+        native: {}
+    });
+
+    adapter.setObjectNotExists(adapter.namespace + '.send.inject.color', {
+        type: 'state',
+        common: {
+            name: 'inject.color',
+            desc: 'send inject for color-slot to snips',
             type: 'string',
             role: 'text',
             read: true,

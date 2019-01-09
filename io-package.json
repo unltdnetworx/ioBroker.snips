@@ -5,67 +5,34 @@
         "news": {
             "0.0.8": {
                 "en": "Adaptation for new snips version",
-                "de": "Anpassung für neue Snips-Version",
-                "ru": "Первоначальный адаптер",
-                "pt": "Versão inicial",
-                "fr": "Version initiale",
-                "nl": "Eerste release"
-            }
-                        ,
-	    "0.0.7": {
+                "de": "Anpassung für neue Snips-Version"
+            },
+	        "0.0.7": {
                 "en": "file corrupt",
                 "de": "datei defekt",
-                "ru": "Первоначальный адаптер",
-                "pt": "Versão inicial",
-                "fr": "Version initiale",
-                "nl": "Eerste release"
-            }
-                        ,
-	    "0.0.6": {
+                "ru": "Первоначальный адаптер"
+            },
+	        "0.0.6": {
                 "en": "add receive.text",
                 "de": "receive.text zugefügt",
-                "ru": "Первоначальный адаптер",
-                "pt": "Versão inicial",
-                "fr": "Version initiale",
-                "nl": "Eerste release"
-            }
-			,
-	    "0.0.5": {
+                "ru": "Первоначальный адаптер"
+            },
+	        "0.0.5": {
                 "en": "bugfix injection",
-                "de": "fehlerbereinigung injection",
-                "ru": "Первоначальный адаптер",
-                "pt": "Versão inicial",
-                "fr": "Version initiale",
-                "nl": "Eerste release"
-            }
-		        ,
-	    "0.0.4": {
+                "de": "fehlerbereinigung injection"
+            },
+	        "0.0.4": {
                 "en": "add hotword recognize",
-                "de": "hotworderkennung zugefügt",
-                "ru": "Первоначальный адаптер",
-                "pt": "Versão inicial",
-                "fr": "Version initiale",
-                "nl": "Eerste release"
-            }
-			,
-	    "0.0.3": {
+                "de": "hotworderkennung zugefügt"
+            },
+	        "0.0.3": {
                 "en": "add filter and text2command-instanz",
-                "de": "filter und text2command-instanz hinzugefügt",
-                "ru": "Первоначальный адаптер",
-                "pt": "Versão inicial",
-                "fr": "Version initiale",
-                "nl": "Eerste release"
-            }
-			,
-	    "0.0.2": {
+                "de": "filter und text2command-instanz hinzugefügt"
+            },
+	        "0.0.2": {
                 "en": "First working adapter",
-                "de": "Erste funktionierende Version",
-                "ru": "Первоначальный адаптер",
-                "pt": "Versão inicial",
-                "fr": "Version initiale",
-                "nl": "Eerste release"
-            }
-			,
+                "de": "Erste funktionierende Version"
+            },
             "0.0.1": {
                 "en": "initial adapter",
                 "de": "Initiale Version",
@@ -78,23 +45,12 @@
 		"title": "Snips-Offline Speak2Text",
         "titleLang": {
             "en": "Snips-Offline Speak2Text",
-            "de": "Snips-Offline Speak2Text",
-            "ru": "Адаптер шаблонов на основе Javascript / Node.js",
-            "pt": "Adaptador de modelo baseado em Javascript / Node.js",
-            "nl": "Javascript / Node.js gebaseerde sjabloonadapter",
-            "fr": "Javascript / Node.js basé adaptateur de modèle",
-            "it": "Adattatore modello basato su Javascript / Node.js",
-            "es": "Adaptador de plantilla basado en JavaScript / Node.js"
+            "de": "Snips-Offline Speak2Text"
         },
         "desc": {
             "en": "ioBroker snips",
             "de": "ioBroker Snips",
-            "ru": "ioBroker Snips как образец",
-            "pt": "Modelo de adaptador para o ioBroker",
-            "fr": "ioBroker adaptateur modèle",
-            "nl": "ioBroker Snips",
-            "it": "Adattatore modello ioBroker",
-            "es": "Adaptador de plantilla ioBroker"
+            "ru": "ioBroker Snips как образец"
         },
         "authors": [
             "Walter Zengel <w.zengel@gmx.de>"
