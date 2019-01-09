@@ -66,6 +66,19 @@ function main() {
         native: {}
     });
 
+    adapter.setObjectNotExists(adapter.namespace + '.receive.intent', {
+        type: 'state',
+        common: {
+            name: 'receive.intent',
+            desc: "receive slots from snip's intents",
+            type: 'string',
+            role: 'text',
+            read: true,
+            write: true
+        },
+        native: {}
+    });
+
     adapter.setObjectNotExists(adapter.namespace + '.send.say.text', {
         type: 'state',
         common: {

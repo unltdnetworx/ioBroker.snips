@@ -24,7 +24,9 @@
     "type": "git",
     "url": "https://github.com/Bettman66/ioBroker.snips"
   },
-  "dependencies": {},
+  "dependencies": {
+    "mqtt": "^2.18.3"
+  },
   "devDependencies": {
     "gulp": "^3.9.1",
     "mocha": "^4.1.0",
