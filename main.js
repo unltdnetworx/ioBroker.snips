@@ -39,7 +39,10 @@ adapter.on('stateChange', (id, state) => {
 	break;
     case (adapter.namespace + '.send.inject.color') :
 	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_color');
-	break;
+    break;
+    case (adapter.namespace + '.send.inject.expletive') :
+	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_expletive');
+    break;
     }
 });
 
@@ -123,6 +126,19 @@ function main() {
         common: {
             name: 'inject.color',
             desc: 'send inject for color-slot to snips',
+            type: 'string',
+            role: 'text',
+            read: true,
+            write: true
+        },
+        native: {}
+    });
+
+    adapter.setObjectNotExists(adapter.namespace + '.send.inject.expletive', {
+        type: 'state',
+        common: {
+            name: 'inject.expletive',
+            desc: 'send inject for expletive-slot to snips (e.g. Guten Morgen)',
             type: 'string',
             role: 'text',
             read: true,
