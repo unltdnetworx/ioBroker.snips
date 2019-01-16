@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "snips",
-        "version": "0.0.8",
+        "version": "0.0.9",
         "news": {
+            "0.0.9": {
+                "en": "ready for adapter-testing, slot interpretation added",
+                "de": "Adapter Tests sind jetzt möglich, Slot-Auswertung implementiert"
+            },
             "0.0.8": {
                 "en": "Adaptation for new snips version",
                 "de": "Anpassung für neue Snips-Version"
@@ -42,10 +46,10 @@
                 "nl": "Eerste release"
             }
         },
-		"title": "Snips-Offline Speak2Text",
+		"title": "Snips-Offline Speech2Text",
         "titleLang": {
-            "en": "Snips-Offline Speak2Text",
-            "de": "Snips-Offline Speak2Text"
+            "en": "Snips-Offline speech2text",
+            "de": "Snips-Offline Speech2Text"
         },
         "desc": {
             "en": "ioBroker snips",
