@@ -1,6 +1,6 @@
 {
   "name": "iobroker.snips",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "snips",
   "author": {
     "name": "Walter Zengel",
@@ -10,6 +10,10 @@
     {
       "name": "Walter Zengel",
       "email": "w.zengel@gmx.de"
+    },
+    {
+      "name": "Michael Schuster",
+      "email": "development@unltd-networx.de"
     }
   ],
   "homepage": "https://github.com/Bettman66/ioBroker.snips",
@@ -24,7 +28,9 @@
     "type": "git",
     "url": "https://github.com/Bettman66/ioBroker.snips"
   },
-  "dependencies": {},
+  "dependencies": {
+    "mqtt": "^2.18.3"
+  },
   "devDependencies": {
     "gulp": "^3.9.1",
     "mocha": "^4.1.0",
