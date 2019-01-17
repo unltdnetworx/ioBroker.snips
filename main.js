@@ -46,6 +46,9 @@ adapter.on('stateChange', (id, state) => {
     case (adapter.namespace + '.send.inject.broadcast') :
 	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_broadcast');
     break;
+	case (adapter.namespace + '.send.feedback.sound') :
+        if (client) client.onStateChange('hermes/feedback/sound',state.val,'sound');
+    break;
     }
 });
 
@@ -58,7 +61,7 @@ function main() {
     if (adapter.config.retransmitInterval < adapter.config.sendInterval) {
         adapter.config.retransmitInterval = adapter.config.sendInterval * 5;
     }
-
+	
 	adapter.setObjectNotExists(adapter.namespace + '.receive.text', {
         type: 'state',
         common: {
@@ -305,7 +308,20 @@ function main() {
         },
         native: {}
     });
-
+	
+	adapter.setObjectNotExists(adapter.namespace + '.send.feedback.sound', {
+        type: 'state',
+        common: {
+            name: 'soundfeedback',
+            desc: 'soundfeedback on/off',
+            type: 'boolean',
+            role: 'state',
+            read: true,
+            write: true
+        },
+        native: {}
+    });
+	
 	adapter.setObjectNotExists(adapter.namespace + '.hotword.wait', {
         type: 'state',
         common: {

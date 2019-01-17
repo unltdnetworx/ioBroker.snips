@@ -67,6 +67,9 @@ Insert in the config of the Text2Command adapter under Answer in ID snips.0.send
 Unknown words can be learned under snips.0.send.inject.room or device.
 
 ## Changelog
+### 0.1.0
+* (wal) add soundfeedback
+
 ### 0.0.9
 * (unltdnetworx) testadapter and slots added
 
