@@ -6,7 +6,7 @@
 [![NPM version](http://img.shields.io/npm/v/iobroker.snips.svg)](https://www.npmjs.com/package/iobroker.snips)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.snips.svg)](https://www.npmjs.com/package/iobroker.snips)
 
-[![NPM](https://nodei.co/npm/iobroker.nips.png?downloads=true)](https://nodei.co/npm/iobroker.snips/)
+[![NPM](https://nodei.co/npm/iobroker.snips.png?downloads=true)](https://nodei.co/npm/iobroker.snips/)
 
 Requires node.js 6.0 or higher and Admin v3!
 
