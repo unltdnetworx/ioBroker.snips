@@ -2,7 +2,7 @@
 # ioBroker.snips
 =================
 
-[![Build Status](https://travis-ci.org/bettman66/ioBroker.snips.svg?branch=master)](https://travis-ci.org/bettman66/ioBroker.snips)
+[![Build Status](https://travis-ci.org/Bettman66/ioBroker.snips.svg?branch=master)](https://travis-ci.org/Bettman66/ioBroker.snips)
 [![NPM version](http://img.shields.io/npm/v/iobroker.snips.svg)](https://www.npmjs.com/package/iobroker.snips)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.snips.svg)](https://www.npmjs.com/package/iobroker.snips)
 
