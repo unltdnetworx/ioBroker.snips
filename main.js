@@ -46,6 +46,12 @@ adapter.on('stateChange', (id, state) => {
     case (adapter.namespace + '.send.inject.broadcast') :
 	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_broadcast');
     break;
+    case (adapter.namespace + '.send.inject.genre') :
+	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_genre');
+    break;
+    case (adapter.namespace + '.send.inject.interpret') :
+	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_interpret');
+    break;
 	case (adapter.namespace + '.send.feedback.sound') :
         if (client) client.onStateChange('hermes/feedback/sound',state.val,'sound');
     break;
@@ -218,6 +224,32 @@ function main() {
         native: {}
     });
 
+    adapter.setObjectNotExists(adapter.namespace + '.receive.slotGenre', {
+        type: 'state',
+        common: {
+            name: 'received compiled genre',
+            desc: "receive recognized genre from snip's intents",
+            type: 'string',
+            role: 'text',
+            read: true,
+            write: true
+        },
+        native: {}
+    });
+
+    adapter.setObjectNotExists(adapter.namespace + '.receive.slotInterpret', {
+        type: 'state',
+        common: {
+            name: 'received compiled interpret',
+            desc: "receive recognized interpret from snip's intents",
+            type: 'string',
+            role: 'text',
+            read: true,
+            write: true
+        },
+        native: {}
+    });
+
     adapter.setObjectNotExists(adapter.namespace + '.receive.slotTime', {
         type: 'state',
         common: {
@@ -301,6 +333,32 @@ function main() {
         common: {
             name: 'expletive inject',
             desc: 'send inject for expletive-slot to snips (e.g. Guten Morgen)',
+            type: 'string',
+            role: 'text',
+            read: true,
+            write: true
+        },
+        native: {}
+    });
+
+    adapter.setObjectNotExists(adapter.namespace + '.send.inject.genre', {
+        type: 'state',
+        common: {
+            name: 'genre inject',
+            desc: 'send inject for genre-slot to snips',
+            type: 'string',
+            role: 'text',
+            read: true,
+            write: true
+        },
+        native: {}
+    });
+
+    adapter.setObjectNotExists(adapter.namespace + '.send.inject.interpret', {
+        type: 'state',
+        common: {
+            name: 'interpret inject',
+            desc: 'send inject for interpret-slot to snips',
             type: 'string',
             role: 'text',
             read: true,
