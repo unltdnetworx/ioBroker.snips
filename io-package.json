@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "snips",
-        "version": "0.1.1",
+        "version": "0.2.0",
         "news": {
+            "0.2.0": {
+                "en": "support for compact-mode added",
+                "de": "Kompaktmodus wird zukünftig unterstützt"
+            },
             "0.1.1": {
                 "en": "2 new slots added incl. injection",
                 "de": "2 neue Slots inkl. Injekction hinzugefügt"
@@ -65,7 +69,8 @@
             "ru": "ioBroker Snips как образец"
         },
         "authors": [
-            "Walter Zengel <w.zengel@gmx.de>"
+            "Walter Zengel <w.zengel@gmx.de>",
+            "Michael Schuster <development@untld-networx.de>"
         ],
         "docs": {       
         },
@@ -79,7 +84,8 @@
         "readme": "https://github.com/Bettman66/ioBroker.snips/blob/master/README.md",
         "loglevel": "info",
         "type": "iot-systems",
-        "license": "MIT"
+        "license": "MIT",
+        "compact": true
     },
     "native": {
 		"filter": "*",
