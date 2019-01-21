@@ -9,54 +9,61 @@
 'use strict';
 
 const utils =    require(__dirname + '/lib/utils');
-const adapter = new utils.Adapter('snips');
 
 let client   = null;
 
-adapter.on('ready', function () {
-    adapter.config.maxTopicLength = 100;
-    main();
-});
-
-adapter.on('unload', function () {
-    if (client) client.destroy();
-});
-
-adapter.on('stateChange', (id, state) => {
-    adapter.log.debug('stateChange ' + id + ': ' + JSON.stringify(state));
-    switch (id) {
-    case (adapter.namespace + '.send.say.text') :
-        adapter.log.info('from Text2Command : ' + state.val);
-	if (state.val.indexOf(adapter.config.filter) == -1) {
-	    if (client) client.onStateChange('hermes/tts/say',state.val,'say');
-	}
-	break;
-    case (adapter.namespace + '.send.inject.room') :
-	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_room');
-	break;
-    case (adapter.namespace + '.send.inject.device') :
-	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_device');
-	break;
-    case (adapter.namespace + '.send.inject.color') :
-	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_color');
-    break;
-    case (adapter.namespace + '.send.inject.expletive') :
-	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_expletive');
-    break;
-    case (adapter.namespace + '.send.inject.broadcast') :
-	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_broadcast');
-    break;
-    case (adapter.namespace + '.send.inject.genre') :
-	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_genre');
-    break;
-    case (adapter.namespace + '.send.inject.interpret') :
-	    if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_interpret');
-    break;
-	case (adapter.namespace + '.send.feedback.sound') :
-        if (client) client.onStateChange('hermes/feedback/sound',state.val,'sound');
-    break;
-    }
-});
+let adapter;
+function startAdapter(options) {
+    options = options || {};
+    Object.assign(options, {
+        name: 'snips',
+        stateChange: (id, state) => {
+            adapter.log.debug('stateChange ' + id + ': ' + JSON.stringify(state));
+            switch (id) {
+            case (adapter.namespace + '.send.say.text') :
+                adapter.log.info('from Text2Command : ' + state.val);
+            if (state.val.indexOf(adapter.config.filter) == -1) {
+                if (client) client.onStateChange('hermes/tts/say',state.val,'say');
+            }
+            break;
+            case (adapter.namespace + '.send.inject.room') :
+                if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_room');
+            break;
+            case (adapter.namespace + '.send.inject.device') :
+                if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_device');
+            break;
+            case (adapter.namespace + '.send.inject.color') :
+                if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_color');
+            break;
+            case (adapter.namespace + '.send.inject.expletive') :
+                if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_expletive');
+            break;
+            case (adapter.namespace + '.send.inject.broadcast') :
+                if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_broadcast');
+            break;
+            case (adapter.namespace + '.send.inject.genre') :
+                if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_genre');
+            break;
+            case (adapter.namespace + '.send.inject.interpret') :
+                if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_interpret');
+            break;
+            case (adapter.namespace + '.send.feedback.sound') :
+                if (client) client.onStateChange('hermes/feedback/sound',state.val,'sound');
+            break;
+            }
+        },
+        unload: function () {
+            if (client) client.destroy();
+        },
+        ready: function () {
+            adapter.config.maxTopicLength = 100;
+            main();
+        }
+    });
+    adapter = new utils.Adapter(options);
+    
+    return adapter;
+};
 
 function main() {
     adapter.config.defaultQoS = 0;
@@ -408,4 +415,12 @@ function main() {
 
 	adapter.subscribeStates('*');
     client = new require(__dirname + '/lib/client')(adapter);
+}
+
+// If started as allInOne/compact mode => return function to create instance
+if (module && module.parent) {
+    module.exports = startAdapter;
+} else {
+    // or start the instance directly
+    startAdapter();
 }
