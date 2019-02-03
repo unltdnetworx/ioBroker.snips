@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "snips",
-        "version": "0.2.0",
+        "version": "0.2.1",
         "news": {
+            "0.2.1": {
+                "en": "slot-type names converted to singular",
+                "de": "Bezeichnung von Slot-Typen in Singular konvertiert"
+            },
             "0.2.0": {
                 "en": "support for compact-mode added",
                 "de": "Kompaktmodus wird zukünftig unterstützt"
