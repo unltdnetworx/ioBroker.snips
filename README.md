@@ -47,7 +47,7 @@ Attach "non-free" in each line, otherwise you can not install the package "libtt
 https://snips.gitbook.io/documentation/advanced-configuration/advanced-solutions
 
 Log in to https://console.snips.ai and add a new wizard.
-Add an app, above the check mark "only show apps with actions" and search for iobroker and select.
+Add an app, above the check mark "only show apps with actions" and search for iobroker ![ioBroker snips-app logo](https://console.snips.ai/images/bundles/bundle-home.svg) and select.
 When you're done, press Deploy Assistant to download the ZIP file.
 The zipfile is unpacked on the snips machine under "/ usr / share / snips", then reboot.
 
