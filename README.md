@@ -47,7 +47,7 @@ Attach "non-free" in each line, otherwise you can not install the package "libtt
 https://snips.gitbook.io/documentation/advanced-configuration/advanced-solutions
 
 Log in to https://console.snips.ai and add a new wizard.
-Add an app, above the check mark "only show apps with actions" and search for iobroker and select.
+Add an app, above the check mark "only show apps with actions" and search for iobroker ![ioBroker snips-app logo](https://console.snips.ai/images/bundles/bundle-home.svg) and select.
 When you're done, press Deploy Assistant to download the ZIP file.
 The zipfile is unpacked on the snips machine under "/ usr / share / snips", then reboot.
 
@@ -67,6 +67,9 @@ Insert in the config of the Text2Command adapter under Answer in ID snips.0.send
 Unknown words can be learned under snips.0.send.inject.room or device.
 
 ## Changelog
+### 0.2.2
+* (unltdnetworx) slot setBoolean changed to setDevice
+
 ### 0.2.1
 * (unltdnetworx) slot-type names converted to singular
 
