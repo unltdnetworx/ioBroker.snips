@@ -192,19 +192,6 @@ function main() {
         native: {}
     });
 
-    adapter.setObjectNotExists(adapter.namespace + '.receive.slotOnOff', {
-        type: 'state',
-        common: {
-            name: 'received compiled on off-value',
-            desc: "receive recognized value from snip's intents",
-            type: 'number',
-            role: 'value',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
     adapter.setObjectNotExists(adapter.namespace + '.receive.slotStatus', {
         type: 'state',
         common: {
