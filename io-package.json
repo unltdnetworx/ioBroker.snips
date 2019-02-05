@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "snips",
-        "version": "0.2.2",
+        "version": "0.3.0",
         "news": {
+            "0.3.0": {
+                "en": "slots reduced to two",
+                "de": "Slots auf zwei reduziert"
+            },
             "0.2.2": {
                 "en": "slot setBoolean changed to setDevice",
                 "de": "Slot setBoolean erweitert und umbenannt in setDevice"
