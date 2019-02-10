@@ -8,62 +8,104 @@
 /*jslint node: true */
 'use strict';
 
-const utils =    require(__dirname + '/lib/utils');
-
+const utils    = require(__dirname + '/lib/utils'); // Get common adapter utils
+const adapterName = require('./package.json').name.split('.').pop();
+let adapter;
 let client   = null;
 
-let adapter;
 function startAdapter(options) {
     options = options || {};
-    Object.assign(options, {
-        name: 'snips',
-        stateChange: (id, state) => {
-            adapter.log.debug('stateChange ' + id + ': ' + JSON.stringify(state));
-            switch (id) {
-            case (adapter.namespace + '.send.say.text') :
-                adapter.log.info('from Text2Command : ' + state.val);
+    Object.assign(options, {name: adapterName});
+
+    adapter = new utils.Adapter(options);
+
+    adapter.on('message', function (obj) {
+        if (obj) processMessage(obj);
+        processMessages();
+    });
+
+    adapter.on('ready', function () {
+        adapter.config.maxTopicLength = 100;
+        main();
+    });
+
+    adapter.on('unload', function () {
+        if (client) client.destroy();
+    });
+
+    // is called if a subscribed state changes
+    adapter.on('stateChange', (id, state) => {
+        adapter.log.debug('stateChange ' + id + ': ' + JSON.stringify(state));
+        switch (id) {
+        case (adapter.namespace + '.send.say.text') :
+            adapter.log.info('from Text2Command : ' + state.val);
             if (state.val.indexOf(adapter.config.filter) == -1) {
                 if (client) client.onStateChange('hermes/tts/say',state.val,'say');
             }
             break;
-            case (adapter.namespace + '.send.inject.room') :
-                if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_room');
+        case (adapter.namespace + '.send.inject.room') :
+            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_room');
             break;
-            case (adapter.namespace + '.send.inject.device') :
-                if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_device');
+        case (adapter.namespace + '.send.inject.device') :
+            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_device');
             break;
-            case (adapter.namespace + '.send.inject.color') :
-                if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_color');
+        case (adapter.namespace + '.send.inject.color') :
+            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_color');
             break;
-            case (adapter.namespace + '.send.inject.expletive') :
-                if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_expletive');
+        case (adapter.namespace + '.send.inject.expletive') :
+            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_expletive');
             break;
-            case (adapter.namespace + '.send.inject.broadcast') :
-                if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_broadcast');
+        case (adapter.namespace + '.send.inject.broadcast') :
+            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_broadcast');
             break;
-            case (adapter.namespace + '.send.inject.genre') :
-                if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_genre');
+        case (adapter.namespace + '.send.inject.genre') :
+            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_genre');
             break;
-            case (adapter.namespace + '.send.inject.interpret') :
-                if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_interpret');
+        case (adapter.namespace + '.send.inject.interpret') :
+            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_interpret');
             break;
-            case (adapter.namespace + '.send.feedback.sound') :
-                if (client) client.onStateChange('hermes/feedback/sound',state.val,'sound');
+        case (adapter.namespace + '.send.feedback.sound') :
+            if (client) client.onStateChange('hermes/feedback/sound',state.val,'sound');
             break;
-            }
-        },
-        unload: function () {
-            if (client) client.destroy();
-        },
-        ready: function () {
-            adapter.config.maxTopicLength = 100;
-            main();
         }
     });
-    adapter = new utils.Adapter(options);
-    
     return adapter;
-};
+}
+
+function processMessage(obj) {
+    if (!obj || !obj.command) return;
+    switch (obj.command) {
+        case 'test': {
+            // Try to connect to mqtt broker
+            if (obj.callback && obj.message) {
+                const mqtt = require('mqtt');
+                const _url = 'mqtt://' + (obj.message.user ? (obj.message.user + ':' + obj.message.pass + '@') : '') + obj.message.url + (obj.message.port ? (':' + obj.message.port) : '') + '?clientId=ioBroker.' + adapter.namespace;
+                const _client = mqtt.connect(_url);
+                // Set timeout for connection
+                const timeout = setTimeout(() => {
+                    _client.end();
+                    adapter.sendTo(obj.from, obj.command, 'timeout', obj.callback);
+                }, 2000);
+
+                // If connected, return success
+                _client.on('connect', () => {
+                    _client.end();
+                    clearTimeout(timeout);
+                    adapter.sendTo(obj.from, obj.command, 'connected', obj.callback);
+                });
+            }
+        }
+    }
+}
+
+function processMessages() {
+    adapter.getMessage((err, obj) => {
+        if (obj) {
+            processMessage(obj.command, obj.message);
+            processMessages();
+        }
+    });
+}
 
 function main() {
     adapter.config.defaultQoS = 0;
@@ -74,7 +116,7 @@ function main() {
     if (adapter.config.retransmitInterval < adapter.config.sendInterval) {
         adapter.config.retransmitInterval = adapter.config.sendInterval * 5;
     }
-	
+
 	adapter.setObjectNotExists(adapter.namespace + '.receive.text', {
         type: 'state',
         common: {
@@ -360,7 +402,7 @@ function main() {
         },
         native: {}
     });
-	
+
 	adapter.setObjectNotExists(adapter.namespace + '.send.feedback.sound', {
         type: 'state',
         common: {
@@ -373,7 +415,7 @@ function main() {
         },
         native: {}
     });
-	
+
 	adapter.setObjectNotExists(adapter.namespace + '.hotword.wait', {
         type: 'state',
         common: {
@@ -400,7 +442,20 @@ function main() {
         native: {}
     });
 
-	adapter.subscribeStates('*');
+        adapter.setObjectNotExists(adapter.namespace + '.hotword.roomid', {
+        type: 'state',
+        common: {
+            name: 'roomId',
+            desc: 'roomId',
+            type: 'string',
+            role: 'text',
+            read: true,
+            write: false
+        },
+        native: {}
+    });
+
+    adapter.subscribeStates('*');
     client = new require(__dirname + '/lib/client')(adapter);
 }
 
