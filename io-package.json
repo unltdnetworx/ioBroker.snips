@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "snips",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "news": {
+            "1.0.1": {
+                "en": "bugfix memoryleak",
+                "de": "Speicherleck beseitigt"
+            },
             "1.0.0": {
                 "en": "stable version",
                 "de": "Stabile Version"
