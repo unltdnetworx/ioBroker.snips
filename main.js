@@ -36,34 +36,50 @@ function startAdapter(options) {
     // is called if a subscribed state changes
     adapter.on('stateChange', (id, state) => {
         adapter.log.debug('stateChange ' + id + ': ' + JSON.stringify(state));
-        switch (id) {
-        case (adapter.namespace + '.send.say.text') :
-            adapter.log.info('from Text2Command : ' + state.val);
-            if (state.val.indexOf(adapter.config.filter) == -1) {
-                if (client) client.onStateChange('hermes/tts/say',state.val,'say');
+        
+        if(id.startsWith(adapter.namespace + '.send.inject.')){
+            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_' + id.split('.')[4]);
+        }
+
+        if(id.endsWith('.send.text')){
+            switch(id.split('.')[3]){
+                //Änderungen der Send.text-Instanzen überwachen
+                //all bei direkter Ansprache oder durch t2c
+                case ('all'):
+                    var regexSessionID = RegExp(/\[([^\[]+)\]$/,'g');
+                    //SessionId aus text2command auslesen, falls vorher übergeben
+                    adapter.getForeignState('text2command.' + adapter.config.topic + '.text', function (err, t2cSessionID) {
+                        let objSessionID = regexSessionID.exec(t2cSessionID.val);
+                        if (objSessionID !== null) {
+                            //Aufruf durch text2command mit enthaltener SessionID
+                            //Abbruch, falls Filter zutrifft ("verstehe"), nur möglich von t2c
+                            if (state.val.indexOf(adapter.config.filter) !== -1) {
+                                if (client) client.onStateChange('hermes/dialogueManager/endSession',{"sessionId":objSessionID[1]},'say');
+                            } else {
+                                if (client) client.onStateChange('hermes/dialogueManager/endSession',{"sessionId":objSessionID[1], "text":state.val},'say');
+                            }
+                            //text2command leeren, um nächste Ausgabe nicht an gleiches Ziel zu senden (SessionID)
+                            adapter.setForeignState('text2command.' + adapter.config.topic + '.text', "");
+                        } else {
+                            //direkter Aufruf ohne SessionID als Notification an alle Geräte
+                            adapter.getDevices(function (err, devices) {
+                                let i;
+                                for (i in devices) {
+                                    if (devices[i].common.name !== 'all') {
+                                        if (client) client.onStateChange('hermes/dialogueManager/startSession',{"siteId":devices[i].common.name,init:{"type":"notification","text":state.val}},'say');
+                                    }
+                                }
+                            })
+                        }
+                    })
+                break;
+                //direkte Ansprache eines einzelnen Satelliten (Nur als Info-Ausgabe "notification" möglich)
+                default:
+                if (client) client.onStateChange('hermes/dialogueManager/startSession',{"siteId":id.split('.')[3],init:{"type":"notification","text":state.val}},'say');    
             }
-            break;
-        case (adapter.namespace + '.send.inject.room') :
-            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_room');
-            break;
-        case (adapter.namespace + '.send.inject.device') :
-            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_device');
-            break;
-        case (adapter.namespace + '.send.inject.color') :
-            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_color');
-            break;
-        case (adapter.namespace + '.send.inject.expletive') :
-            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_expletive');
-            break;
-        case (adapter.namespace + '.send.inject.broadcast') :
-            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_broadcast');
-            break;
-        case (adapter.namespace + '.send.inject.genre') :
-            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_genre');
-            break;
-        case (adapter.namespace + '.send.inject.interpret') :
-            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_interpret');
-            break;
+        }
+        
+        switch (id) {
         case (adapter.namespace + '.send.feedback.sound') :
             if (client) client.onStateChange('hermes/feedback/sound',state.val,'sound');
             break;
@@ -117,11 +133,20 @@ function main() {
         adapter.config.retransmitInterval = adapter.config.sendInterval * 5;
     }
 
-	adapter.setObjectNotExists(adapter.namespace + '.send.say.text', {
+    //Dummy-Snips-Gerät für alle Satelliten als Device anlegen
+    adapter.setObjectNotExists(adapter.namespace + '.devices.all', {
+        type: 'device',
+        common: {
+            name: 'all'
+        },
+        native: undefined
+    });
+    
+    adapter.setObjectNotExists(adapter.namespace + '.devices.all.send.text', {
         type: 'state',
         common: {
             name: 'text for output',
-            desc: 'send text to snips',
+            desc: 'send text to all snips devices/datapoint for text2command',
             type: 'string',
             role: 'text',
             read: true,

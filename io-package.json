@@ -1,9 +1,13 @@
 {
     "common": {
         "name": "snips",
-        "version": "1.0.1",
+        "version": "1.1.0",
         "news": {
-	    "1.0.1": {
+            "1.1.0": {
+                "en": "support for satellites",
+                "de": "Unterstützung für Satellitenbetrieb"
+            },
+            "1.0.1": {
                 "en": "add siteId",
                 "de": "Stabile Version"
             },	
