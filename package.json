@@ -30,7 +30,8 @@
     "url": "https://github.com/Bettman66/ioBroker.snips"
   },
   "dependencies": {
-    "mqtt": "^2.18.3"
+    "mqtt": "^2.18.3",
+    "@iobroker/adapter-core": "^1.0.3"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
