@@ -3,7 +3,7 @@
 =================
 
 [![Build Status](https://travis-ci.org/Bettman66/ioBroker.snips.svg?branch=master)](https://travis-ci.org/Bettman66/ioBroker.snips)
-[![NPM version](http://img.shields.io/npm/v/iobroker.snips.svg)](https://www.npmjs.com/package/iobroker.snips)
+![Number of Installations](http://iobroker.live/badges/snips-installed.svg) ![Number of Installations](http://iobroker.live/badges/snips-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.snips.svg)](https://www.npmjs.com/package/iobroker.snips)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.snips.svg)](https://www.npmjs.com/package/iobroker.snips)
 
 [![NPM](https://nodei.co/npm/iobroker.snips.png?downloads=true)](https://nodei.co/npm/iobroker.snips/)
