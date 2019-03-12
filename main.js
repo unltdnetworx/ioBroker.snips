@@ -4,8 +4,6 @@
  *
  */
 
-/* jshint -W097 */// jshint strict:false
-/*jslint node: true */
 'use strict';
 
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
@@ -174,7 +172,7 @@ function main() {
         native: {}
     });
 
-	adapter.setObjectNotExists(adapter.namespace + '.send.inject.device', {
+    adapter.setObjectNotExists(adapter.namespace + '.send.inject.device', {
         type: 'state',
         common: {
             name: 'device inject',
@@ -278,7 +276,7 @@ function main() {
         native: {}
     });
 
-	adapter.setObjectNotExists(adapter.namespace + '.hotword.detected', {
+    adapter.setObjectNotExists(adapter.namespace + '.hotword.detected', {
         type: 'state',
         common: {
             name: 'hotword detected',
