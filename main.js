@@ -33,8 +33,9 @@ function startAdapter(options) {
         main();
     });
 
-    adapter.on('unload', function () {
+    adapter.on('unload', function (callback) {
         if (client) client.destroy();
+        callback();
     });
 
     // is called if a subscribed state changes
