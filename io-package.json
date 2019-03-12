@@ -7,9 +7,13 @@
                 "en": "support for satellites",
                 "de": "Unterstützung für Satellitenbetrieb"
             },
-            "1.0.1": {
+            "1.0.2": {
                 "en": "add siteId",
                 "de": "Stabile Version"
+            },
+            "1.0.1": {
+                "en": "bugfix memoryleak",
+                "de": "Speicherleck beseitigt"
             },	
             "1.0.0": {
                 "en": "stable version",

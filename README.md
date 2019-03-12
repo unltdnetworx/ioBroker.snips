@@ -72,6 +72,9 @@ sudo apt-get install -y snips-injection
 ### 1.1.0
 * (unltdnetworx) support for satellites
 
+### 1.0.1
+* (wal) bugfix memoryleak
+
 ### 1.0.0
 * (wal) stable version
 
