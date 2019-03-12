@@ -61,12 +61,17 @@ Filter   : for example understand
 ClientID : ID (for example 0)
 
 ### Configure Text2Command adapter
-Insert in the config of the Text2Command adapter under Answer in ID snips.0.send.say.text.
+Insert in the config of the Text2Command adapter under Answer in ID snips.X.devices.all.send.say.text.
 
 ### Injection (learn new words)
 Unknown words can be learned under snips.0.send.inject.room or device.
+ATTENTION: inject service has to be installed on the device/server
+sudo apt-get install -y snips-injection
 
 ## Changelog
+### 1.1.0
+* (unltdnetworx) support for satellites
+
 ### 1.0.1
 * (wal) bugfix memoryleak
 

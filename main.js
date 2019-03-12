@@ -9,8 +9,7 @@
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
 const adapterName = require('./package.json').name.split('.').pop();
 let adapter;
-
-let client = null;
+let client   = null;
 
 function getAppName() {
     const parts = __dirname.replace(/\\/g, '/').split('/');
@@ -20,7 +19,7 @@ utils.appName = getAppName();
 
 function startAdapter(options) {
     options = options || {};
-    Object.assign(options, { name: adapterName });
+    Object.assign(options, {name: adapterName});
 
     adapter = new utils.Adapter(options);
 
@@ -41,37 +40,53 @@ function startAdapter(options) {
     // is called if a subscribed state changes
     adapter.on('stateChange', (id, state) => {
         adapter.log.debug('stateChange ' + id + ': ' + JSON.stringify(state));
+        
+        if(id.startsWith(adapter.namespace + '.send.inject.')){
+            if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_' + id.split('.')[4]);
+        }
+
+        if(id.endsWith('.send.text')){
+            switch(id.split('.')[3]){
+                //Änderungen der Send.text-Instanzen überwachen
+                //all bei direkter Ansprache oder durch t2c
+                case ('all'):
+                    var regexSessionID = RegExp(/\[([^\[]+)\]$/,'g');
+                    //SessionId aus text2command auslesen, falls vorher übergeben
+                    adapter.getForeignState('text2command.' + adapter.config.topic + '.text', function (err, t2cSessionID) {
+                        let objSessionID = regexSessionID.exec(t2cSessionID.val);
+                        if (objSessionID !== null) {
+                            //Aufruf durch text2command mit enthaltener SessionID
+                            //Abbruch, falls Filter zutrifft ("verstehe"), nur möglich von t2c
+                            if (state.val.indexOf(adapter.config.filter) !== -1) {
+                                if (client) client.onStateChange('hermes/dialogueManager/endSession',{"sessionId":objSessionID[1]},'say');
+                            } else {
+                                if (client) client.onStateChange('hermes/dialogueManager/endSession',{"sessionId":objSessionID[1], "text":state.val},'say');
+                            }
+                            //text2command leeren, um nächste Ausgabe nicht an gleiches Ziel zu senden (SessionID)
+                            adapter.setForeignState('text2command.' + adapter.config.topic + '.text', "");
+                        } else {
+                            //direkter Aufruf ohne SessionID als Notification an alle Geräte
+                            adapter.getDevices(function (err, devices) {
+                                let i;
+                                for (i in devices) {
+                                    if (devices[i].common.name !== 'all') {
+                                        if (client) client.onStateChange('hermes/dialogueManager/startSession',{"siteId":devices[i].common.name,init:{"type":"notification","text":state.val}},'say');
+                                    }
+                                }
+                            })
+                        }
+                    })
+                break;
+                //direkte Ansprache eines einzelnen Satelliten (Nur als Info-Ausgabe "notification" möglich)
+                default:
+                if (client) client.onStateChange('hermes/dialogueManager/startSession',{"siteId":id.split('.')[3],init:{"type":"notification","text":state.val}},'say');    
+            }
+        }
+        
         switch (id) {
-            case (adapter.namespace + '.send.say.text'):
-                adapter.log.info('from Text2Command : ' + state.val);
-                if (state.val.indexOf(adapter.config.filter) == -1) {
-                    if (client) client.onStateChange('hermes/tts/say', state.val, 'say');
-                }
-                break;
-            case (adapter.namespace + '.send.inject.room'):
-                if (client) client.onStateChange('hermes/injection/perform', state.val, 'inject_room');
-                break;
-            case (adapter.namespace + '.send.inject.device'):
-                if (client) client.onStateChange('hermes/injection/perform', state.val, 'inject_device');
-                break;
-            case (adapter.namespace + '.send.inject.color'):
-                if (client) client.onStateChange('hermes/injection/perform', state.val, 'inject_color');
-                break;
-            case (adapter.namespace + '.send.inject.expletive'):
-                if (client) client.onStateChange('hermes/injection/perform', state.val, 'inject_expletive');
-                break;
-            case (adapter.namespace + '.send.inject.broadcast'):
-                if (client) client.onStateChange('hermes/injection/perform', state.val, 'inject_broadcast');
-                break;
-            case (adapter.namespace + '.send.inject.genre'):
-                if (client) client.onStateChange('hermes/injection/perform', state.val, 'inject_genre');
-                break;
-            case (adapter.namespace + '.send.inject.interpret'):
-                if (client) client.onStateChange('hermes/injection/perform', state.val, 'inject_interpret');
-                break;
-            case (adapter.namespace + '.send.feedback.sound'):
-                if (client) client.onStateChange('hermes/feedback/sound', state.val, 'sound');
-                break;
+        case (adapter.namespace + '.send.feedback.sound') :
+            if (client) client.onStateChange('hermes/feedback/sound',state.val,'sound');
+            break;
         }
     });
     return adapter;
@@ -122,193 +137,20 @@ function main() {
         adapter.config.retransmitInterval = adapter.config.sendInterval * 5;
     }
 
-    adapter.setObjectNotExists(adapter.namespace + '.receive.text', {
-        type: 'state',
+    //Dummy-Snips-Gerät für alle Satelliten als Device anlegen
+    adapter.setObjectNotExists(adapter.namespace + '.devices.all', {
+        type: 'device',
         common: {
-            name: 'received text',
-            desc: 'receive text from snips',
-            type: 'string',
-            role: 'text',
-            read: true,
-            write: true
+            name: 'all'
         },
-        native: {}
+        native: undefined
     });
-
-    adapter.setObjectNotExists(adapter.namespace + '.receive.compiledText', {
-        type: 'state',
-        common: {
-            name: 'compiled text',
-            desc: "receive compiled text from snip's intents",
-            type: 'string',
-            role: 'text',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists(adapter.namespace + '.receive.slotDevice', {
-        type: 'state',
-        common: {
-            name: 'received compiled device',
-            desc: "receive recognized device from snip's intents",
-            type: 'string',
-            role: 'text',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists(adapter.namespace + '.receive.slotRoom', {
-        type: 'state',
-        common: {
-            name: 'received compiled room',
-            desc: "receive recognized room from snip's intents",
-            type: 'string',
-            role: 'text',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists(adapter.namespace + '.receive.slotValuetype', {
-        type: 'state',
-        common: {
-            name: 'received compiled valuetype',
-            desc: "receive recognized valuetype from snip's intents",
-            type: 'string',
-            role: 'text',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists(adapter.namespace + '.receive.slotColor', {
-        type: 'state',
-        common: {
-            name: 'received compiled color',
-            desc: "receive recognized color from snip's intents",
-            type: 'string',
-            role: 'text',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists(adapter.namespace + '.receive.slotBroadcast', {
-        type: 'state',
-        common: {
-            name: 'received compiled broadcaster',
-            desc: "receive recognized broadcaster from snip's intents",
-            type: 'string',
-            role: 'text',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists(adapter.namespace + '.receive.slotCommand', {
-        type: 'state',
-        common: {
-            name: 'received compiled command',
-            desc: "receive recognized command from snip's intents",
-            type: 'string',
-            role: 'text',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists(adapter.namespace + '.receive.slotValue', {
-        type: 'state',
-        common: {
-            name: 'received compiled value',
-            desc: "receive recognized value from snip's intents",
-            type: 'number',
-            role: 'value',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists(adapter.namespace + '.receive.slotStatus', {
-        type: 'state',
-        common: {
-            name: 'received compiled status',
-            desc: "receive recognized status from snip's intents",
-            type: 'string',
-            role: 'text',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists(adapter.namespace + '.receive.slotDuration', {
-        type: 'state',
-        common: {
-            name: 'received compiled duration',
-            desc: "receive recognized duration from snip's intents",
-            type: 'string',
-            role: 'text',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists(adapter.namespace + '.receive.slotGenre', {
-        type: 'state',
-        common: {
-            name: 'received compiled genre',
-            desc: "receive recognized genre from snip's intents",
-            type: 'string',
-            role: 'text',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists(adapter.namespace + '.receive.slotInterpret', {
-        type: 'state',
-        common: {
-            name: 'received compiled interpret',
-            desc: "receive recognized interpret from snip's intents",
-            type: 'string',
-            role: 'text',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists(adapter.namespace + '.receive.slotTime', {
-        type: 'state',
-        common: {
-            name: 'received compiled time',
-            desc: "receive recognized time from snip's intents",
-            type: 'number',
-            role: 'value.datetime',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists(adapter.namespace + '.send.say.text', {
+    
+    adapter.setObjectNotExists(adapter.namespace + '.devices.all.send.text', {
         type: 'state',
         common: {
             name: 'text for output',
-            desc: 'send text to snips',
+            desc: 'send text to all snips devices/datapoint for text2command',
             type: 'string',
             role: 'text',
             read: true,
@@ -408,7 +250,7 @@ function main() {
         native: {}
     });
 
-    adapter.setObjectNotExists(adapter.namespace + '.send.feedback.sound', {
+	adapter.setObjectNotExists(adapter.namespace + '.send.feedback.sound', {
         type: 'state',
         common: {
             name: 'soundfeedback',
@@ -421,7 +263,7 @@ function main() {
         native: {}
     });
 
-    adapter.setObjectNotExists(adapter.namespace + '.hotword.wait', {
+	adapter.setObjectNotExists(adapter.namespace + '.hotword.wait', {
         type: 'state',
         common: {
             name: 'hotword wait',
@@ -441,19 +283,6 @@ function main() {
             desc: 'hotword is detected',
             type: 'boolean',
             role: 'state',
-            read: true,
-            write: false
-        },
-        native: {}
-    });
-
-    adapter.setObjectNotExists(adapter.namespace + '.hotword.roomid', {
-        type: 'state',
-        common: {
-            name: 'roomId',
-            desc: 'roomId',
-            type: 'string',
-            role: 'text',
             read: true,
             write: false
         },
