@@ -8,10 +8,16 @@
 /*jslint node: true */
 'use strict';
 
-const utils    = require(__dirname + '/lib/utils'); // Get common adapter utils
+const utils = require('@iobroker/adapter-core'); // Get common adapter utils
 const adapterName = require('./package.json').name.split('.').pop();
 let adapter;
 let client   = null;
+
+function getAppName() {
+    const parts = __dirname.replace(/\\/g, '/').split('/');
+    return parts[parts.length - 1].split('.')[0];
+}
+utils.appName = getAppName();
 
 function startAdapter(options) {
     options = options || {};
