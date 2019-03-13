@@ -3,6 +3,10 @@
         "name": "snips",
         "version": "1.1.0",
         "news": {
+	    "1.1.1": {
+                "en": "Update CI testing",
+                "de": "Update CI testing"
+            },
             "1.1.0": {
                 "en": "support for satellites",
                 "de": "Unterstützung für Satellitenbetrieb"

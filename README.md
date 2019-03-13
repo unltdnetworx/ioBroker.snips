@@ -69,6 +69,9 @@ ATTENTION: inject service has to be installed on the device/server
 sudo apt-get install -y snips-injection
 
 ## Changelog
+### 1.1.1
+* (apollon77) Update CI testing
+
 ### 1.1.0
 * (unltdnetworx) support for satellites
 
