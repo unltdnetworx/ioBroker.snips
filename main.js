@@ -41,7 +41,7 @@ function startAdapter(options) {
     // is called if a subscribed state changes
     adapter.on('stateChange', (id, state) => {
         adapter.log.debug('stateChange ' + id + ': ' + JSON.stringify(state));
-        
+
         if(id.startsWith(adapter.namespace + '.send.inject.')){
             if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_' + id.split('.')[4]);
         }
@@ -87,6 +87,31 @@ function startAdapter(options) {
         switch (id) {
         case (adapter.namespace + '.send.feedback.sound') :
             if (client) client.onStateChange('hermes/feedback/sound',state.val,'sound');
+            break;
+        case (adapter.namespace + '.devices.createSatellite') :
+            //Neues Snips-Gerät als Device anlegen
+            adapter.setObjectNotExists(adapter.namespace + '.devices.' + state.val, {
+                type: 'device',
+                common: {
+                    name: state.val
+                },
+                native: undefined
+            });
+        
+            adapter.setObjectNotExists(
+                adapter.namespace + '.devices.' + state.val + '.send.text', {
+                    type: 'state',
+                    common: {
+                        name: 'text for output',
+                        desc: 'send text to snips',
+                        type: 'string',
+                        role: 'text',
+                        read: true,
+                        write: true
+                    },
+                    native: {}
+                }
+            );
             break;
         }
     });
@@ -145,6 +170,19 @@ function main() {
             name: 'all'
         },
         native: undefined
+    });
+
+    adapter.setObjectNotExists(adapter.namespace + '.devices.createSatellite', {
+        type: 'state',
+        common: {
+            name: 'new satellite',
+            desc: 'create a new satellite manually (auto-creation on first microphone-input)',
+            type: 'string',
+            role: 'text',
+            read: true,
+            write: true
+        },
+        native: {}
     });
     
     adapter.setObjectNotExists(adapter.namespace + '.devices.all.send.text', {

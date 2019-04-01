@@ -1,9 +1,13 @@
 {
     "common": {
         "name": "snips",
-        "version": "1.1.1",
+        "version": "1.1.2",
         "news": {
-	    "1.1.1": {
+            "1.1.2": {
+                "en": "create satellites manually",
+                "de": "manuelles Hinzufügen von Satelliten"
+            },
+            "1.1.1": {
                 "en": "Update CI testing",
                 "de": "Update CI testing"
             },
