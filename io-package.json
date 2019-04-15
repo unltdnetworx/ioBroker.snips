@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "snips",
-        "version": "1.1.4",
+        "version": "1.1.5",
         "news": {
+            "1.1.5": {
+                "en": "bugfixes for adapter-testing",
+                "de": "Fehlerbehbung für Adaptertests"
+            },
             "1.1.4": {
                 "en": "control soundfeedback for every satellite",
                 "de": "Soundfeedback für jeden Satelliten getrennt steuern"
@@ -38,72 +42,6 @@
             "0.3.1": {
                 "en": "bugfix for not recognized slots",
                 "de": "Bugfix für nicht erkannte Slots"
-            },
-            "0.3.0": {
-                "en": "slots reduced to two",
-                "de": "Slots auf zwei reduziert"
-            },
-            "0.2.2": {
-                "en": "slot setBoolean changed to setDevice",
-                "de": "Slot setBoolean erweitert und umbenannt in setDevice"
-            },
-            "0.2.1": {
-                "en": "slot-type names converted to singular",
-                "de": "Bezeichnung von Slot-Typen in Singular konvertiert"
-            },
-            "0.2.0": {
-                "en": "support for compact-mode added",
-                "de": "Kompaktmodus wird zukünftig unterstützt"
-            },
-            "0.1.1": {
-                "en": "2 new slots added incl. injection",
-                "de": "2 neue Slots inkl. Injekction hinzugefügt"
-            },
-            "0.1.0": {
-                "en": "soundfeedback on/off added",
-                "de": "Soundfeedback an/aus implementiert"
-            },
-            "0.0.9": {
-                "en": "ready for adapter-testing, slot interpretation added",
-                "de": "Adapter Tests sind jetzt möglich, Slot-Auswertung implementiert"
-            },
-            "0.0.8": {
-                "en": "Adaptation for new snips version",
-                "de": "Anpassung für neue Snips-Version"
-            },
-	        "0.0.7": {
-                "en": "file corrupt",
-                "de": "datei defekt",
-                "ru": "Первоначальный адаптер"
-            },
-	        "0.0.6": {
-                "en": "add receive.text",
-                "de": "receive.text zugefügt",
-                "ru": "Первоначальный адаптер"
-            },
-	        "0.0.5": {
-                "en": "bugfix injection",
-                "de": "fehlerbereinigung injection"
-            },
-	        "0.0.4": {
-                "en": "add hotword recognize",
-                "de": "hotworderkennung zugefügt"
-            },
-	        "0.0.3": {
-                "en": "add filter and text2command-instanz",
-                "de": "filter und text2command-instanz hinzugefügt"
-            },
-	        "0.0.2": {
-                "en": "First working adapter",
-                "de": "Erste funktionierende Version"
-            },
-            "0.0.1": {
-                "en": "initial adapter",
-                "de": "Initiale Version",
-                "ru": "Первоначальный адаптер",
-                "pt": "Versão inicial",
-                "fr": "Version initiale",
-                "nl": "Eerste release"
             }
         },
 		"title": "Snips-Offline Speech2Text",
@@ -128,9 +66,9 @@
         "icon": "snips.png",
         "materialize": true,
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/Bettman66/ioBroker.snips/master/admin/snips.png",
+        "extIcon": "https://raw.githubusercontent.com/unltdnetworx/ioBroker.snips/master/admin/snips.png",
         "keywords": ["snips", "GUI", "graphical", "scada"],
-        "readme": "https://github.com/Bettman66/ioBroker.snips/blob/master/README.md",
+        "readme": "https://github.com/unltdnetworx/ioBroker.snips/blob/master/README.md",
         "loglevel": "info",
         "type": "iot-systems",
         "license": "MIT",

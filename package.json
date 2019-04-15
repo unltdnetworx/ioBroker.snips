@@ -1,6 +1,6 @@
 {
   "name": "iobroker.snips",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "snips",
   "author": {
     "name": "Walter Zengel",
@@ -17,7 +17,7 @@
     },
     "bluefox <dogafox@gmail.com>"
   ],
-  "homepage": "https://github.com/Bettman66/ioBroker.snips",
+  "homepage": "https://github.com/unltdnetworx/ioBroker.snips",
   "license": "MIT",
   "keywords": [
     "ioBroker",
@@ -27,7 +27,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Bettman66/ioBroker.snips"
+    "url": "https://github.com/unltdnetworx/ioBroker.snips"
   },
   "dependencies": {
     "mqtt": "^2.18.3",
@@ -47,7 +47,7 @@
     "test:integration": "mocha test/integration --exit"
   },
   "bugs": {
-    "url": "https://github.com/Bettman66/ioBroker.snips/issues"
+    "url": "https://github.com/unltdnetworx/ioBroker.snips/issues"
   },
   "readmeFilename": "README.md"
 }
