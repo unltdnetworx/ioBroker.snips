@@ -46,6 +46,14 @@ function startAdapter(options) {
             if (client) client.onStateChange('hermes/injection/perform',state.val,'inject_' + id.split('.')[4]);
         }
 
+        if(id.endsWith('.send.feedback')){
+            if (state.val) {
+                if (client) client.onStateChange('hermes/feedback/sound/toggleOn',id.split('.')[3],'feedback');
+            } else {
+                if (client) client.onStateChange('hermes/feedback/sound/toggleOff',id.split('.')[3],'feedback');
+            }
+        }
+
         if(id.endsWith('.send.text')){
             switch(id.split('.')[3]){
                 //Änderungen der Send.text-Instanzen überwachen
@@ -85,9 +93,6 @@ function startAdapter(options) {
         }
         
         switch (id) {
-        case (adapter.namespace + '.send.feedback.sound') :
-            if (client) client.onStateChange('hermes/feedback/sound',state.val,'sound');
-            break;
         case (adapter.namespace + '.devices.createSatellite') :
             //Neues Snips-Gerät als Device anlegen
             adapter.setObjectNotExists(adapter.namespace + '.devices.' + state.val, {
@@ -283,19 +288,6 @@ function main() {
             desc: 'send inject for interpret-slot to snips',
             type: 'string',
             role: 'text',
-            read: true,
-            write: true
-        },
-        native: {}
-    });
-
-	adapter.setObjectNotExists(adapter.namespace + '.send.feedback.sound', {
-        type: 'state',
-        common: {
-            name: 'soundfeedback',
-            desc: 'soundfeedback on/off',
-            type: 'boolean',
-            role: 'state',
             read: true,
             write: true
         },
