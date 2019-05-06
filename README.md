@@ -69,6 +69,9 @@ ATTENTION: inject service has to be installed on the device/server
 sudo apt-get install -y snips-injection
 
 ## Changelog
+### 1.1.6
+* (unltdnetworx) activation/deactivation of hotword recognition for each satellite (mute)
+
 ### 1.1.5
 * (unltdnetworx) bugfixes for adapter-testing
 

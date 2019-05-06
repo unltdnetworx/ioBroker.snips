@@ -54,6 +54,14 @@ function startAdapter(options) {
             }
         }
 
+        if(id.endsWith('.send.hotword')){
+            if (state.val) {
+                if (client) client.onStateChange('hermes/hotword/toggleOn',id.split('.')[3],'hotword');
+            } else {
+                if (client) client.onStateChange('hermes/hotword/toggleOff',id.split('.')[3],'hotword');
+            }
+        }
+
         if(id.endsWith('.send.text')){
             switch(id.split('.')[3]){
                 //Änderungen der Send.text-Instanzen überwachen
@@ -111,6 +119,21 @@ function startAdapter(options) {
                         desc: 'send text to snips',
                         type: 'string',
                         role: 'text',
+                        read: true,
+                        write: true
+                    },
+                    native: {}
+                }
+            );
+
+            adapter.setObjectNotExists(
+                adapter.namespace + '.devices.' + state.val + '.send.hotword', {
+                    type: 'state',
+                    common: {
+                        name: 'hotword recognition',
+                        desc: 'activate/deactivate hotword recognicion (mute)',
+                        type: 'boolean',
+                        role: 'state',
                         read: true,
                         write: true
                     },

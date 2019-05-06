@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "snips",
-        "version": "1.1.5",
+        "version": "1.1.6",
         "news": {
+            "1.1.6": {
+                "en": "activation/deactivation of hotword recognition for each satellite (mute)",
+                "de": "Aktivierung/Deaktivierung der Hotword-Erkennung für jeden Satelliten einstellbar"
+            },
             "1.1.5": {
                 "en": "bugfixes for adapter-testing",
                 "de": "Fehlerbehbung für Adaptertests"
@@ -26,22 +30,6 @@
             "1.1.0": {
                 "en": "support for satellites",
                 "de": "Unterstützung für Satellitenbetrieb"
-            },
-            "1.0.2": {
-                "en": "add siteId",
-                "de": "Stabile Version"
-            },
-            "1.0.1": {
-                "en": "bugfix memoryleak",
-                "de": "Speicherleck beseitigt"
-            },	
-            "1.0.0": {
-                "en": "stable version",
-                "de": "Stabile Version"
-            },
-            "0.3.1": {
-                "en": "bugfix for not recognized slots",
-                "de": "Bugfix für nicht erkannte Slots"
             }
         },
 		"title": "Snips-Offline Speech2Text",
