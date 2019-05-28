@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "snips",
-        "version": "1.1.6",
+        "version": "1.1.7",
         "news": {
+            "1.1.7": {
+                "en": "security update because of vulnerability in pulled by mqtt-dependency mqtt-package",
+                "de": "Sicherheitslücke in MQTT-Packet, Abhängigkeit durch MQTT"
+            },
             "1.1.6": {
                 "en": "activation/deactivation of hotword recognition for each satellite (mute)",
                 "de": "Aktivierung/Deaktivierung der Hotword-Erkennung für jeden Satelliten einstellbar"
