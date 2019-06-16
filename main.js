@@ -140,6 +140,21 @@ function startAdapter(options) {
                     native: {}
                 }
             );
+
+            adapter.setObjectNotExists(
+                adapter.namespace + '.devices.' + state.val + '.enforceSameRoom', {
+                    type: 'state',
+                    common: {
+                        name: 'enforce same room',
+                        desc: 'activate/deactivate enforcement for room slot as romm of device',
+                        type: 'boolean',
+                        role: 'state',
+                        read: true,
+                        write: true
+                    },
+                    native: {value: false}
+                }
+            );
             break;
         }
     });
