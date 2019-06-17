@@ -30,6 +30,7 @@ function startAdapter(options) {
 
     adapter.on('ready', function () {
         adapter.config.maxTopicLength = 100;
+
         main();
     });
 
