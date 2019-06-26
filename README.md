@@ -71,6 +71,10 @@ sudo apt-get install -y snips-injection
 
 ## Changelog
 
+### 1.2.1
+
+* (unltdnetworx) bugfix for multiple devices in stellite's room
+
 ### 1.2.0
 
 * (unltdnetworx) possibility to enforce the room for a satellite

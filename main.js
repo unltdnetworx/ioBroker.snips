@@ -147,11 +147,12 @@ function startAdapter(options) {
                     type: 'state',
                     common: {
                         name: 'enforce same room',
-                        desc: 'activate/deactivate enforcement for room slot as romm of device',
+                        desc: 'activate/deactivate enforcement for room slot as room of device',
                         type: 'boolean',
                         role: 'state',
                         read: true,
-                        write: true
+                        write: true,
+                        def: false
                     },
                     native: {value: false}
                 }

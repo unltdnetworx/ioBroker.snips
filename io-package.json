@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "snips",
-        "version": "1.2.0",
+        "version": "1.2.1",
         "news": {
+            "1.2.1": {
+                "en": "bugfix for multiple devices in stellite's room",
+                "de": "Fehler bei mehreren Geräten im Raum des Satelliten behoben"
+            },
             "1.2.0": {
                 "en": "possibility to enforce the room for a satellite",
                 "de": "Möglichkeit Räume für Satelliten zu erzwingen"
@@ -30,14 +34,6 @@
             "1.1.2": {
                 "en": "create satellites manually",
                 "de": "manuelles Hinzufügen von Satelliten"
-            },
-            "1.1.1": {
-                "en": "Update CI testing",
-                "de": "Update CI testing"
-            },
-            "1.1.0": {
-                "en": "support for satellites",
-                "de": "Unterstützung für Satellitenbetrieb"
             }
         },
 		"title": "Snips-Offline Speech2Text",
