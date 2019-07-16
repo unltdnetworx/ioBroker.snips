@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "snips",
-        "version": "1.2.1",
+        "version": "1.3.0",
         "news": {
+            "1.3.0": {
+                "en": "preparation for multilingualism support",
+                "de": "Vorbereitung für Unterstützung von Mehrsprachigkeit"
+            },
             "1.2.1": {
                 "en": "bugfix for multiple devices in stellite's room",
                 "de": "Fehler bei mehreren Geräten im Raum des Satelliten behoben"
@@ -49,7 +53,7 @@
         "authors": [
             "Walter Zengel <w.zengel@gmx.de>",
             "Michael Schuster <development@untld-networx.de>",
-	    "bluefox <dogafox@gmail.com>"
+	        "bluefox <dogafox@gmail.com>"
         ],
         "docs": {       
         },
@@ -71,7 +75,8 @@
 		"topic": "0",
 		"url": "localhost",
 		"port": "1883",
-		"clientId": "0"
+        "clientId": "0",
+        "snipsLanguage": "de"
     },
     "objects": [
 
