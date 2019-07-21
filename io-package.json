@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "snips",
-        "version": "1.3.0",
+        "version": "1.3.1",
         "news": {
+            "1.3.1": {
+                "en": "add multilingual blinds/switch-rule",
+                "de": "Hinzufügen von Mehrsprachigkeit für Rollladen/Schalter-Regel"
+            },
             "1.3.0": {
                 "en": "preparation for multilingualism support",
                 "de": "Vorbereitung für Unterstützung von Mehrsprachigkeit"
