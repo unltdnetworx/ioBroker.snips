@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "snips",
-        "version": "1.3.1",
+        "version": "1.4.0",
         "news": {
+            "1.4.0": {
+                "en": "multilingualism support for german and english",
+                "de": "Mehrsprachigkeit für Deutsch und Englisch"
+            },
             "1.3.1": {
                 "en": "add multilingual blinds/switch-rule",
                 "de": "Hinzufügen von Mehrsprachigkeit für Rollladen/Schalter-Regel"
@@ -26,22 +30,6 @@
             "1.1.6": {
                 "en": "activation/deactivation of hotword recognition for each satellite (mute)",
                 "de": "Aktivierung/Deaktivierung der Hotword-Erkennung für jeden Satelliten einstellbar"
-            },
-            "1.1.5": {
-                "en": "bugfixes for adapter-testing",
-                "de": "Fehlerbehbung für Adaptertests"
-            },
-            "1.1.4": {
-                "en": "control soundfeedback for every satellite",
-                "de": "Soundfeedback für jeden Satelliten getrennt steuern"
-            },
-            "1.1.3": {
-                "en": "delete states after session ended",
-                "de": "Status werden nach Sessionende geleert"
-            },
-            "1.1.2": {
-                "en": "create satellites manually",
-                "de": "manuelles Hinzufügen von Satelliten"
             }
         },
 		"title": "Snips-Offline Speech2Text",
