@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "snips",
-        "version": "1.4.0",
+        "version": "1.5.0",
         "news": {
+            "1.5.0": {
+                "en": "removal of language support, may come back",
+                "de": "Mehrsprachigkeit entfernt, kommt vllt. wieder"
+            },
             "1.4.0": {
                 "en": "multilingualism support for german and english",
                 "de": "Mehrsprachigkeit für Deutsch und Englisch"

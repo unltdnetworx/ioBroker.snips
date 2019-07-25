@@ -71,6 +71,10 @@ sudo apt-get install -y snips-injection
 
 ## Changelog
 
+### 1.5.0
+
+* (unltdnetworx) removal of language support, may come back
+
 ### 1.4.0
 
 * (unltdnetworx) multilingualism support for german and english
