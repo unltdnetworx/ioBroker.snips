@@ -203,7 +203,7 @@ sudo apt-get install -y snips-injection
 
 The MIT License (MIT)
 
-Copyright (c) 2019 Michael Schuster <development@unltd-networx.de> & Walter Zengel <w.zengel@gmx.de>
+Copyright (c) 2020 Michael Schuster <development@unltd-networx.de> & Walter Zengel <w.zengel@gmx.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
