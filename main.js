@@ -189,13 +189,11 @@ function processMessage(obj) {
     }
 }
 
-function processMessages() {
-    adapter.getMessage((err, obj) => {
-        if (obj) {
-            processMessage(obj.command, obj.message);
-            processMessages();
-        }
-    });
+function processMessages(obj) {
+    if (obj) {
+        processMessage(obj.command, obj.message);
+        processMessages();
+    }
 }
 
 function main() {
