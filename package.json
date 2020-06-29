@@ -30,7 +30,7 @@
     "url": "https://github.com/unltdnetworx/ioBroker.snips"
   },
   "dependencies": {
-    "mqtt": "^3.0.0",
+    "mqtt": "^4.1.0",
     "@iobroker/adapter-core": "^2.4.0"
   },
   "devDependencies": {
@@ -39,14 +39,12 @@
     "eslint": "^7.3.1",
     "gulp": "^4.0.2",
     "mocha": "^8.0.1",
-    "set-value": ">=2.0.1"
+    "kind-of": ">=6.0.3"
   },
   "main": "main.js",
   "scripts": {
-    "test": "npm run test:package && npm run test:unit",
-    "test:package": "mocha test/package --exit",
-    "test:unit": "mocha test/unit --exit",
-    "test:integration": "mocha test/integration --exit"
+    "test": "node node_modules/mocha/bin/mocha --exit",
+    "release": "release-script"
   },
   "bugs": {
     "url": "https://github.com/unltdnetworx/ioBroker.snips/issues"
