@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "snips",
-        "version": "1.5.0",
+        "version": "1.5.1",
         "news": {
+            "1.5.1": {
+                "en": "new adapter testing and security update",
+                "de": "neue Version von Adapter testing und Sicherheits-Updates"
+            },
             "1.5.0": {
                 "en": "removal of language support, may come back",
                 "de": "Mehrsprachigkeit entfernt, kommt vllt. wieder"
